@@ -1,4 +1,3 @@
-// script.js (No changes needed - using previous version)
 document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('audio');
     const songCover = document.getElementById('song-cover');
@@ -13,9 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.getElementById('search-button');
     const queueList = document.getElementById('queue-list');
     const seekBar = document.getElementById('seek-bar');
-    const categoryList = document.getElementById('category-list'); // Added Category List
+    const categoryList = document.getElementById('category-list');
 
-    // Song Data
     const songs = [
         {
             title: "Journey to the Promise",
@@ -54,35 +52,102 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: "The True Panda God",
-            artist: "QuizzityMC",
+            artist: "Church of Panditu",
             cover: "img/thetruepandagod-quizzitymc.jpeg",
             src: "music/thetruepandagod-quizzitymc.mp3",
             category: "Religious"
         },
         {
             title: "The Book Of Rana",
-            artist: "QuizzityMC",
+            artist: "Church of Panditu",
             cover: "img/bookofrana-quizzitymc.jpeg",
             src: "music/bookofrana-quizzitymc.mp3",
             category: "Religious"
-        }
+        },
+         {
+            title: "Everybody Wants To Rule The World",
+            artist: "Tears For Fears",
+            cover: "img/aristocracy-pineapplemusic.webp",
+            src: "music/Everybody Wants To Rule The World 4.mp3",
+            category: "Pop"
+        },
+        {
+            title: "Ode to the Panda Land",
+            artist: "The Thalizar Empire",
+            cover: "img/thetruepandagod-quizzitymc.jpeg",
+            src: "music/Ode to the Panda Land.mp3",
+            category: "Religious"
+        },
+        {
+            title: "Spear of Justice",
+            artist: "Toby Fox",
+            cover: "img/thetruepandagod-quizzitymc.jpeg",
+            src: "music/Spear_of_Justice_music.ogg",
+            category: "VideoGame"
+        },
+        {
+            title: "I Am a Poor Wayfaring Stranger",
+            artist: "Jos Slovick",
+            cover: "img/EveryBodyWantsToRuleTheWorld-TearsForFears.png",
+            src: "music/Jos Slovick - I Am a Poor Wayfaring Stranger (from 1917) - Official Audio [A Cappella] 4.mp3",
+            category: "Spiritual"
+        },
+        {
+            title: "A Sky Full Of Stars",
+            artist: "Coldplay",
+            cover: "img/aristocracy-pineapplemusic.webp",
+            src: "music/Coldplay - A Sky Full Of Stars (Official audio) 4.mp3",
+            category: "Pop"
+        },
+        {
+            title: "Clocks",
+            artist: "Coldplay",
+            cover: "img/thetruepandagod-quizzitymc.jpeg",
+            src: "music/Clocks 4.mp3",
+            category: "Pop"
+        },
+        {
+            title: "Anthem Of Thalizar",
+            artist: "The Thalizar Empire",
+            cover: "img/winterwalk-purrplecat.jpeg",
+            src: "music/anthem-of-thalizar.mp3",
+            category: "Thalizar"
+        },
+        {
+            title: "Sempurna",
+            artist: "Andra And The Backbone",
+            cover: "https://i.ytimg.com/vi/jStNaVCW838/sddefault.jpg",
+            src: "music/Andra And The Backbone - Sempurna (Official Music Video) 4.mp3",
+            category: "Rock"
+        },
+        {
+            title: "104 Credits",
+            artist: "Antimo & Welles",
+            cover: "https://i.ytimg.com/vi/4pDfwXrQgXM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDEqH5T8xkifOFwKE2gC435VFdTuA",
+            src: "music/104 Credits [Minecraft_ Story Mode 104 OST] 4.mp3",
+            category: "VideoGame"
+        },
+        {
+              title: "Aria: Zu Tanze, zu Sprunge",
+              artist: "J.S. Bach",
+              cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/250px-Johann_Sebastian_Bach.jpg",
+              src: "music/J.S. Bach - BWV 201 (7_15) - Aria_ _Zu Tanze, zu Sprunge so wackelt das Herz_ 4.mp3",
+              category: "Classical"
+          }
     ];
 
     let songIndex = 0;
     let isPlaying = false;
     let currentQueue = [...songs];
 
-    // Get unique categories
-     const categories = [...new Set(songs.map(song => song.category))];
+    const categories = [...new Set(songs.map(song => song.category))];
 
-     // Function to populate the sidebar with categories
      function populateCategories() {
          categoryList.innerHTML = '';
          categories.forEach(category => {
              const listItem = document.createElement('li');
              listItem.textContent = category;
              listItem.addEventListener('click', () => {
-                 // Filter songs by category
                  currentQueue = songs.filter(song => song.category === category);
                  songIndex = 0;
                  loadSong(songIndex);
@@ -95,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      }
 
-    // Function to load the current song
     function loadSong(index) {
         const song = currentQueue[index];
         songCover.src = song.cover;
@@ -104,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
         audio.src = song.src;
     }
 
-    // Function to toggle play/pause
     function togglePlayPause() {
         if (isPlaying) {
             audio.pause();
@@ -116,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
         isPlaying = !isPlaying;
     }
 
-    // Function to play the next song
     function nextSong() {
         songIndex = (songIndex + 1) % currentQueue.length;
         loadSong(songIndex);
@@ -125,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to play the previous song
     function prevSong() {
         songIndex = (songIndex - 1 + currentQueue.length) % currentQueue.length;
         loadSong(songIndex);
@@ -134,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to shuffle the queue
     function shuffleQueue() {
         currentQueue = [...songs];
         for (let i = currentQueue.length - 1; i > 0; i--) {
@@ -149,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to update the queue display
     function updateQueueDisplay() {
         queueList.innerHTML = '';
         currentQueue.forEach((song, index) => {
@@ -166,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to handle search
     function handleSearch() {
         const searchTerm = searchInput.value.toLowerCase();
         currentQueue = songs.filter(song =>
@@ -182,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listeners
     playButton.addEventListener('click', togglePlayPause);
     nextButton.addEventListener('click', nextSong);
     prevButton.addEventListener('click', prevSong);
@@ -199,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     audio.addEventListener('play', () => {
         isPlaying = true;
         playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        updateSeekBarFill();
     });
 
     audio.addEventListener('pause', () => {
@@ -210,20 +268,23 @@ document.addEventListener('DOMContentLoaded', function() {
         audio.volume = this.value / 100;
     });
 
-    // Update seek bar
     audio.addEventListener('timeupdate', () => {
         const percentage = (audio.currentTime / audio.duration) * 100;
         seekBar.value = percentage;
+        updateSeekBarFill();
     });
 
-    // Seek functionality
     seekBar.addEventListener('input', () => {
         const time = (seekBar.value / 100) * audio.duration;
         audio.currentTime = time;
     });
 
-    // Initial load
+    function updateSeekBarFill() {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        seekBar.style.setProperty('--seek-before-width', `${percentage}%`);
+    }
+
     loadSong(songIndex);
     updateQueueDisplay();
-    populateCategories(); // Initial Category Loading
+    populateCategories();
 });

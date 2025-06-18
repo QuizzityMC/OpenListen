@@ -10,7 +10,6 @@ body {
     height: 100vh;
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: 250px;
     background-color: #000;
@@ -44,7 +43,7 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-}
+    }
 
 .navigation a i {
     margin-right: 10px;
@@ -58,7 +57,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Main Content Styles */
 .main-content {
     flex: 1;
     padding: 20px;
@@ -73,7 +71,6 @@ header {
     margin-bottom: 20px;
 }
 
-/* Search Bar Styling */
 .search-bar {
     display: flex;
     align-items: center;
@@ -82,10 +79,10 @@ header {
 .search-bar input[type="text"] {
     padding: 8px;
     border: none;
-    border-radius: 4px 0 0 4px; /* Rounded left corners */
+    border-radius: 4px 0 0 4px;
     background-color: #333;
     color: #fff;
-    margin-right: 0; /* Remove right margin */
+    margin-right: 0;
 }
 
 .search-bar button {
@@ -93,16 +90,15 @@ header {
     color: #fff;
     border: none;
     padding: 8px 12px;
-    border-radius: 0 4px 4px 0; /* Rounded right corners */
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
-    margin-left: 0; /* Remove left margin */
+    margin-left: 0;
 }
 
 .search-bar button:hover {
     background-color: #14833d;
 }
 
-/* Queue Styling */
 .queue ul {
     list-style: none;
     padding: 0;
@@ -114,11 +110,11 @@ header {
     margin-bottom: 5px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
 .queue li:hover {
-    background-color: #333; /* Darker background on hover */
+    background-color: #333;
 }
 
 section {
@@ -129,16 +125,15 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Music Player Styles */
 .music-player {
     background-color: #282828;
     position: fixed;
-    bottom: 20px; /* Adjusted bottom position */
+    bottom: 20px;
     left: 0;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between; /* Keep main axis as space-between */
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     box-sizing: border-box;
@@ -147,7 +142,7 @@ h2 {
 .song-info {
     display: flex;
     align-items: center;
-    width: auto;  /* Revert width to auto */
+    width: auto;
     justify-content: flex-start;
     margin-bottom: 5px;
 }
@@ -159,7 +154,7 @@ h2 {
 }
 
 .song-details {
-    flex: none;  /* Revert flex setting */
+    flex: none;
 }
 
 .song-details h3 {
@@ -195,7 +190,7 @@ h2 {
 .volume-control {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Push volume controls to the right */
+    margin-left: auto;
 }
 
 .volume-control i {
@@ -207,7 +202,6 @@ h2 {
     width: 100px;
 }
 
-/* Seek Bar Styling */
 .seek-bar-container {
     width: 100%;
     padding: 0 10px;
@@ -221,24 +215,22 @@ h2 {
 .seek-bar-container input[type="range"] {
     width: 100%;
     height: 8px;
-    background: linear-gradient(to right, #1DB954 var(--seek-before-width), #444 var(--seek-before-width));  /*Gradient*/
+    background: linear-gradient(to right, #1DB954 var(--seek-before-width), #444 var(--seek-before-width));
     border-radius: 5px;
     outline: none;
     -webkit-appearance: none;
 }
 
-/* Webkit thumb */
 .seek-bar-container input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
-    background: #fff; /*White thumb*/
+    background: #fff;
     border-radius: 50%;
     cursor: pointer;
     border: none;
 }
 
-/* Firefox Thumb */
 .seek-bar-container input[type="range"]::-moz-range-thumb {
     width: 12px;
     height: 12px;
@@ -248,7 +240,6 @@ h2 {
     border: none;
 }
 
-/* General thumb */
 .seek-bar-container input[type="range"]::-ms-thumb {
     width: 12px;
     height: 12px;
@@ -258,8 +249,6 @@ h2 {
     border: none;
 }
 
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -283,15 +272,15 @@ h2 {
     }
 
     .music-player {
-       flex-direction: column; /* Stacking again on small screen */
+       flex-direction: column;
        align-items: center;
        padding: 10px;
     }
 
     .song-info {
         margin-bottom: 10px;
-        flex-direction: column; /* Stack image and text on smaller screens */
-        align-items: flex-start; /* Align to the left */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .song-info img {
@@ -301,10 +290,12 @@ h2 {
 
     .volume-control {
         margin-top: 10px;
-        margin-left: 0; /* Reset margin */
+        margin-left: 0;
     }
 
     .seek-bar-container {
        margin-top: 10px;
     }
 }
+
+/* Make sure to fix seek bar */
