@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenListen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="img/logofavicon.png">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="img/logofavicon.png" alt="OpenListen Logo">
+                <h1>OpenListen</h1>
+            </div>
+            <div class="navigation">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i>Your Library</a></li>
+                </ul>
+            </div>
+
+            <div class="categories">  <!-- Replaced playlists with categories -->
+                <h3>Categories</h3>
+                <ul id = "category-list">
+                    <!-- Categories will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <header>
+                <h2>Welcome to OpenListen!</h2>
+                 <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search songs...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </header>
+
+            <section class="queue">
+                <h2>Queue</h2>
+                <ul id="queue-list">
+                    <!-- Queue will be populated by JavaScript -->
+                </ul>
+            </section>
+        </div>
+
+        <div class="music-player">
+            <div class="song-info">
+                <img src="img/aristocracy-pineapplemusic.webp" alt="Current Song Cover" id="song-cover">
+                <div class="song-details">
+                    <h3 id="song-title">Aristocracy</h3>
+                    <p id="artist-name">PineappleMusic</p>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="prev"><i class="fas fa-step-backward"></i></button>
+                <button id="play"><i class="fas fa-play"></i></button>
+                <button id="next"><i class="fas fa-step-forward"></i></button>
+                <button id="shuffle"><i class="fas fa-random"></i></button>
+            </div>
+            <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" min="0" max="100" value="50" id="volume">
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <div class="seek-bar-container">
+                <input type="range" min="0" max="100" value="0" id="seek-bar">
+            </div>
+              <audio id="audio" src="music/aristocracy-pineapplemusic.mp3"></audio>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
