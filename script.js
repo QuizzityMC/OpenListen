@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
          {
             title: "Everybody Wants To Rule The World",
             artist: "Tears For Fears",
-            cover: "img/aristocracy-pineapplemusic.webp",
+            cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7AtsSsVznbBTN_1d50nS3Z4H9vLGE__UX2Q&s",
             src: "music/Everybody Wants To Rule The World 4.mp3",
             category: "Pop"
         },
@@ -81,14 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             title: "Spear of Justice",
             artist: "Toby Fox",
-            cover: "img/thetruepandagod-quizzitymc.jpeg",
+            cover: "https://slm-assets.secondlife.com/assets/12554358/lightbox/Undyne_512.jpg?1444906219",
             src: "music/Spear_of_Justice_music.ogg",
             category: "VideoGame"
         },
         {
             title: "I Am a Poor Wayfaring Stranger",
             artist: "Jos Slovick",
-            cover: "img/EveryBodyWantsToRuleTheWorld-TearsForFears.png",
+            cover: "https://i1.sndcdn.com/artworks-Mo8M5YnvfxCzK9fi-r0EVfw-t500x500.png",
             src: "music/Jos Slovick - I Am a Poor Wayfaring Stranger (from 1917) - Official Audio [A Cappella] 4.mp3",
             category: "Spiritual"
         },
@@ -287,30 +287,4 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSong(songIndex);
     updateQueueDisplay();
     populateCategories();
-
-    const popup = document.querySelector('.startup-popup');
-    const popupBackdrop = document.querySelector('.popup-backdrop');
-    const closeButton = document.querySelector('.startup-popup .close-button');
-    let popupTimeout;
-
-    function showPopup() {
-        popup.classList.add('active');
-        popupBackdrop.classList.add('active');
-    }
-
-    function closePopup() {
-        popup.classList.remove('active');
-        popupBackdrop.classList.remove('active');
-        clearTimeout(popupTimeout); 
-    }
-
-    setTimeout(() => {
-        showPopup();
-        popupTimeout = setTimeout(closePopup, 11000); 
-    }, 1000);
-
-
-    closeButton.addEventListener('click', closePopup);
-
-    popupBackdrop.addEventListener('click', closePopup);
-});
+});   

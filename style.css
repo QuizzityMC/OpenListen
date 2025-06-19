@@ -299,7 +299,7 @@ h2 {
 }
 
 .startup-popup {
-    display: none;#
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -314,6 +314,7 @@ h2 {
     width: 400px; 
     max-width: 90%;
     aria-modal: true; 
+    margin: auto;
 }
 
 .startup-popup img {
