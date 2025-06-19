@@ -287,4 +287,30 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSong(songIndex);
     updateQueueDisplay();
     populateCategories();
+
+    const popup = document.querySelector('.startup-popup');
+    const popupBackdrop = document.querySelector('.popup-backdrop');
+    const closeButton = document.querySelector('.startup-popup .close-button');
+    let popupTimeout;
+
+    function showPopup() {
+        popup.classList.add('active');
+        popupBackdrop.classList.add('active');
+    }
+
+    function closePopup() {
+        popup.classList.remove('active');
+        popupBackdrop.classList.remove('active');
+        clearTimeout(popupTimeout); 
+    }
+
+    setTimeout(() => {
+        showPopup();
+        popupTimeout = setTimeout(closePopup, 11000); 
+    }, 1000);
+
+
+    closeButton.addEventListener('click', closePopup);
+
+    popupBackdrop.addEventListener('click', closePopup);
 });
