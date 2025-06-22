@@ -79,6 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
             src: "music/bookofrana-quizzitymc.mp3",
             category: "Religious"
         },
+        {
+            title: "Gran Vals",
+            artist: "Francisco Tárrega",
+            cover: "img/francescotarrega.png",
+            src: "music/gran_vals.ogg",
+            category: "Classical"
+        },
          {
             title: "Everybody Wants To Rule The World",
             artist: "Tears For Fears",
