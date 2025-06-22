@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Bad Friend",
             artist: "Bad Wolves",
             cover: "img/Bad Friend.jpg",
-            src: "music/Bad Wolves - Bad Friends.mp3",
+            src: "music/Bad Wolves - Bad Friend.mp3",
             category: "Metal"
         },
         {
