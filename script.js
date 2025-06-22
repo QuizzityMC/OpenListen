@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "Rock"
         },
         {
-            title: "World So Cold",
+            title: "Bitter Taste",
             artist: "Three Days Grace",
             cover: "img/Life Starts Now.jpg",
-            src: "music/Three Days Grace - World So Cold.mp3",
+            src: "music/Three Days Grace - Bitter Taste.mp3",
             category: "Rock"
         },
         {
