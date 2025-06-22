@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             artist: "PineappleMusic",
             cover: "img/aristocracy-pineapplemusic.webp",
             src: "music/aristocracy-pineapplemusic.mp3",
-            category: "Classic"
+            category: "Classical"
         },
         {
             title: "Chariots of Fire",
