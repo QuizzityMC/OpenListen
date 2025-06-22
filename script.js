@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             src: "music/Clocks 4.mp3",
             category: "Pop"
         },
-        {
+        {   
             title: "Anthem Of Thalizar",
             artist: "The Thalizar Empire",
             cover: "img/winterwalk-purrplecat.jpeg",
@@ -171,11 +171,39 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "Deathcore"
         },
         {
+            title: "Slow Life",
+            artist: "Benjamin Lazarus",
+            cover: "img/slowlife.webp",
+            src: "music/slowlife.mp3",
+            category: "Epic"
+        },
+        {
             title: "Bad Friend",
             artist: "Bad Wolves",
             cover: "img/Bad Friend.jpg",
             src: "music/Bad Wolves - Bad Friend.mp3",
             category: "Metal"
+        },
+        {
+            title: "He's a Pirate - Pirates of the Carribean",
+            artist: "Hanz Zimmer",
+            cover: "img/hesapirate-h.zimmer.png",
+            src: "music/hesapirate-h.zimmer.mp3",
+            category: "Film Music"
+        },
+        {
+            title: "James Bond theme",
+            artist: "Monty Norman / John Barry",
+            cover: "img/jamesbondtheme.jpeg",
+            src: "music/jamesbondtheme.mp3",
+            category: "Film Music"
+        },
+        {
+            title: "Indiana Jones theme",
+            artist: "John Williams",
+            cover: "img/indianajonestheme.jpeg",
+            src: "music/indianajonestheme.mp3",
+            category: "Film Music"
         },
         {
             title: "Figure.09",
