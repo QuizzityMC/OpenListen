@@ -148,7 +148,42 @@ document.addEventListener('DOMContentLoaded', function() {
               cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/250px-Johann_Sebastian_Bach.jpg",
               src: "music/J.S. Bach - BWV 201 (7_15) - Aria_ _Zu Tanze, zu Sprunge so wackelt das Herz_ 4.mp3",
               category: "Classical"
-          }
+          },
+        {
+            title: "Because Of Me",
+            artist: "Seether",
+            cover: "img/Karma And Effect.jpg",
+            src: "music/Seether - Because Of Me.mp3",
+            category: "Rock"
+        },
+        {
+            title: "Bitter Taste",
+            artist: "Three Days Grace",
+            cover: "img/Life Starts Now.jpg",
+            src: "music/Three Days Grace - Bitter Taste.mp3",
+            category: "Rock"
+        },
+        {
+            title: "Possession",
+            artist: "Whitechapel",
+            cover: "img/This Is Exile.jpg",
+            src: "music/Whitechapel - Possession.mp3",
+            category: "Deathcore"
+        },
+        {
+            title: "Bad Friend",
+            artist: "Bad Wolves",
+            cover: "img/Bad Friend.jpg",
+            src: "music/Bad Wolves - Bad Friend.mp3",
+            category: "Metal"
+        },
+        {
+            title: "Figure.09",
+            artist: "Linkin Park",
+            cover: "img/Meteora.jpg",
+            src: "music/Linkin Park - Figure.09.mp3",
+            category: "Rock"
+        }
     ];
 
     let songIndex = 0;
