@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenListen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="img/logofavicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,14 +21,13 @@
             </div>
             <div class="navigation">
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i>Your Library</a></li>
+                    <li><a href="#" id="home-button"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#" id="library-button"><i class="fas fa-book"></i>Your Library</a></li>
                 </ul>
             </div>
             <div class="categories">
                 <h3>Categories</h3>
                 <ul id = "category-list">
-
                 </ul>
             </div>
         </div>
@@ -38,41 +41,51 @@
                 </div>
             </header>
 
-            <section class="queue">
+            <section class="queue" id="queue-section">
                 <h2>Queue</h2>
                 <ul id="queue-list">
 
                 </ul>
             </section>
-        </div>
 
-        <div class="music-player">
-            <div class="song-info">
-                <img src="img/aristocracy-pineapplemusic.webp" alt="Current Song Cover" id="song-cover">
-                <div class="song-details">
-                    <h3 id="song-title">Aristocracy</h3>
-                    <p id="artist-name">PineappleMusic</p>
-                </div>
-
-
-            </div>
-            <div class="controls">
-                <button id="prev"><i class="fas fa-step-backward"></i></button>
-                <button id="play"><i class="fas fa-play"></i></button>
-                <button id="next"><i class="fas fa-step-forward"></i></button>
-                <button id="shuffle"><i class="fas fa-random"></i></button>
-            </div>
-            <div class="volume-control">
-                <i class="fas fa-volume-down"></i>
-                <input type="range" min="0" max="100" value="50" id="volume">
-                <i class="fas fa-volume-up"></i>
-            </div>
-            <div class="seek-bar-container">
-                <input type="range" min="0" max="100" value="0" id="seek-bar">
-            </div>
-              <audio id="audio" src=""></audio>
+            <section class="favorites" id="favorites-section" style="display: none;">
+                <h2>Your Library</h2>
+                <ul id="favorites-list">
+                    <!-- Favorites List -->
+                </ul>
+            </section>
         </div>
     </div>
+
+    <div class="music-player">
+        <div class="song-info">
+            <img src="img/askyfullofstars.jpeg" alt="Current Song Cover" id="song-cover">
+            <div class="song-details">
+                <h3 id="song-title">A Sky Full of Stars</h3>
+                <p id="artist-name">Coldplay</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev"><i class="fas fa-step-backward"></i></button>
+            <button id="play"><i class="fas fa-play"></i></button>
+            <button id="next"><i class="fas fa-step-forward"></i></button>
+            <button id="shuffle"><i class="fas fa-random"></i></button>
+            <button id="add-to-favorites"><i class="fas fa-heart"></i></button>
+        </div>
+          <div class="volume-control">
+            <button id="mute-button"><i class="fas fa-volume-up"></i></button> <!-- Mute Button -->
+            <input type="range" min="0" max="100" value="50" id="volume" >
+        </div>
+        <div class="seek-bar-container">
+            <span id="current-time">0:00</span>
+            <input type="range" min="0" max="100" value="0" id="seek-bar">
+            <span id="duration">0:00</span>
+        </div>
+         <canvas id="visualizer"></canvas>
+
+    <audio id="audio" src="music/Coldplay - A Sky Full Of Stars (Official audio) 4.mp3"></audio>
+</div>
 
     <!-- Startup Popup -->
     <div class="popup-backdrop"></div>

@@ -13,6 +13,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const queueList = document.getElementById('queue-list');
     const seekBar = document.getElementById('seek-bar');
     const categoryList = document.getElementById('category-list');
+    const homeButton = document.getElementById('home-button');
+    const libraryButton = document.getElementById('library-button');
+    const queueSection = document.getElementById('queue-section');
+    const favoritesSection = document.getElementById('favorites-section');
+    const favoritesList = document.getElementById('favorites-list');
+    const addToFavoritesButton = document.getElementById('add-to-favorites');
+    const startupPopup = document.querySelector('.startup-popup');
+    const popupBackdrop = document.querySelector('.popup-backdrop');
+    const closeButton = document.querySelector('.startup-popup .close-button');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const durationDisplay = document.getElementById('duration');
+    const muteButton = document.getElementById('mute-button');
+    const visualizerCanvas = document.getElementById('visualizer');
+    const visualizerContext = visualizerCanvas.getContext('2d');
+         const musicPlayer = document.querySelector('.music-player');
 
     const songs = [
         {
@@ -95,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             title: "A Sky Full Of Stars",
             artist: "Coldplay",
-            cover: "img/aristocracy-pineapplemusic.webp",
+            cover: "img/askyfullofstars.jpeg",
             src: "music/Coldplay - A Sky Full Of Stars (Official audio) 4.mp3",
             category: "Pop"
         },
@@ -110,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Anthem Of Thalizar",
             artist: "The Thalizar Empire",
             cover: "img/winterwalk-purrplecat.jpeg",
-            src: "music/anthem-of-thalizar.mp3",
+            src: "music/thalizarnationalanthem.mp3",
             category: "Thalizar"
         },
         {
@@ -142,6 +157,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const categories = [...new Set(songs.map(song => song.category))];
 
+    const sortableList = document.getElementById('queue-list');
+        Sortable.create(sortableList, {
+            onEnd: function (evt) {
+                let tempQueue = [];
+                Array.from(sortableList.children).forEach(item => {
+                    const songIndex = item.dataset.index;
+                    tempQueue.push(songs[songIndex]);
+                });
+                currentQueue = tempQueue;
+            }
+        });
      function populateCategories() {
          categoryList.innerHTML = '';
          categories.forEach(category => {
@@ -152,21 +178,23 @@ document.addEventListener('DOMContentLoaded', function() {
                  songIndex = 0;
                  loadSong(songIndex);
                  updateQueueDisplay();
-                 if (isPlaying) {
-                     audio.play();
-                 }
-             });
+                  isPlaying = false;
+                 playButton.innerHTML = '<i class="fas fa-play"></i>';
+                  visualizerContext.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+                  audio.pause();
+            });
              categoryList.appendChild(listItem);
          });
      }
 
-    function loadSong(index) {
+      function loadSong(index) {
         const song = currentQueue[index];
         songCover.src = song.cover;
         songTitle.textContent = song.title;
         artistName.textContent = song.artist;
         audio.src = song.src;
     }
+
 
     function togglePlayPause() {
         if (isPlaying) {
@@ -213,14 +241,20 @@ document.addEventListener('DOMContentLoaded', function() {
         queueList.innerHTML = '';
         currentQueue.forEach((song, index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${song.title} - ${song.artist} (${song.category})`;
+                listItem.textContent = `${song.title} - ${song.artist} (${song.category})`;
+            listItem.dataset.index = index;
+            listItem.draggable = true;
+             // Automatically play the song
             listItem.addEventListener('click', () => {
                 songIndex = index;
                 loadSong(songIndex);
-                if (isPlaying) {
-                    audio.play();
+                  if (audio.paused) {
+                    togglePlayPause();
                 }
+                visualizerContext.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+                 drawVisualizer();
             });
+
             queueList.appendChild(listItem);
         });
     }
@@ -239,52 +273,211 @@ document.addEventListener('DOMContentLoaded', function() {
             audio.play();
         }
     }
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        function saveFavorites() {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        function loadFavorites() {
+        favoritesList.innerHTML = '';
+        favorites.forEach(song => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${song.title} - ${song.artist} (${song.category})`;
+             listItem.addEventListener('click', () => {
+                const index = songs.findIndex(s => s.title === song.title && s.artist === song.artist);
+                if (index !== -1) {
+                    songIndex = index;
+                    currentQueue = songs;
+                    loadSong(songIndex);
+                    updateQueueDisplay();
+                     if (isPlaying) {
+                        audio.play();
+                        }
+                     
+                }
+
+            });
+            favoritesList.appendChild(listItem);
+        });
+    }
+
+
+    function addToFavorites() {
+        const currentSong = currentQueue[songIndex];
+    
+        const isFavorite = favorites.some(song => 
+            song.title === currentSong.title && song.artist === currentSong.artist
+        );
+    
+        if (!isFavorite) {
+            favorites.push(currentSong);
+            saveFavorites();
+            loadFavorites();
+            alert(`${currentSong.title} added to Your Library!`);
+        } else {
+            alert(`${currentSong.title} is already in Your Library!`);
+        }
+    }
+
+    function showSection(sectionId) {
+        queueSection.style.display = 'none';
+        favoritesSection.style.display = 'none';
+
+        const section = document.getElementById(sectionId);
+        if(section) {
+            section.style.display = 'block';
+        }
+    }
+
+    let isMuted = false;
+
+    function toggleMute() {
+        isMuted = !isMuted;
+        if (isMuted) {
+            audio.muted = true;
+            volumeControl.value = 0;
+            muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            audio.muted = false;
+            volumeControl.value = audio.volume * 100;
+            muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+
+function formatTime(time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time - minutes * 60);
+        return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    }
+
+    let audioContext;
+    let analyser;
+    let bufferLength;
+    let dataArray;
+
+
+    function initVisualizer() {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256;
+        bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+
+        const source = audioContext.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        visualizerCanvas.width = musicPlayer.offsetWidth;
+        visualizerCanvas.height = 50;
+    }
+    function drawVisualizer() {
+         if (!analyser) return;
+
+        requestAnimationFrame(drawVisualizer);
+        analyser.getByteFrequencyData(dataArray);
+
+        visualizerContext.fillStyle = '#121212';
+        visualizerContext.fillRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+        const barWidth = (visualizerCanvas.width / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i];
+
+            visualizerContext.fillStyle = '#1DB954';
+            visualizerContext.fillRect(x, visualizerCanvas.height - barHeight/2, barWidth, barHeight/2);
+            x += barWidth + 1;
+        }
+    }
 
     playButton.addEventListener('click', togglePlayPause);
     nextButton.addEventListener('click', nextSong);
     prevButton.addEventListener('click', prevSong);
     shuffleButton.addEventListener('click', shuffleQueue);
     searchButton.addEventListener('click', handleSearch);
+    addToFavoritesButton.addEventListener('click', addToFavorites);
+    homeButton.addEventListener('click', function() {
+        showSection('queue-section');
+    });
+    libraryButton.addEventListener('click', function() {
+        showSection('favorites-section');
+    });
+
     searchInput.addEventListener('keypress', function(event) {
         if (event.key === "Enter") {
             handleSearch();
         }
     });
 
-    audio.addEventListener('ended', nextSong);
-
-    audio.addEventListener('play', () => {
-        isPlaying = true;
-        playButton.innerHTML = '<i class="fas fa-pause"></i>';
-        updateSeekBarFill();
-    });
-
-    audio.addEventListener('pause', () => {
-         isPlaying = false;
-         playButton.innerHTML = '<i class="fas fa-play"></i>';
-    });
-
     volumeControl.addEventListener('input', function() {
         audio.volume = this.value / 100;
     });
 
-    audio.addEventListener('timeupdate', () => {
-        const percentage = (audio.currentTime / audio.duration) * 100;
-        seekBar.value = percentage;
+      muteButton.addEventListener('click', toggleMute);
+
+    audio.addEventListener('ended', nextSong);
+
+  audio.addEventListener('play', () => {
+        isPlaying = true;
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
         updateSeekBarFill();
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+        drawVisualizer();
     });
 
-    seekBar.addEventListener('input', () => {
+     audio.addEventListener('pause', () => {
+         isPlaying = false;
+         playButton.innerHTML = '<i class="fas fa-play"></i>';
+    });
+       audio.addEventListener('timeupdate', () => {
+       const currentTime = audio.currentTime;
+        const duration = audio.duration;
+
+        currentTimeDisplay.textContent = formatTime(currentTime);
+        durationDisplay.textContent = formatTime(duration);
+
+        const percentage = (currentTime / duration) * 100;
+        seekBar.value = percentage;
+        updateSeekBarFill();
+
+     });
+      
+   seekBar.addEventListener('input', () => {
         const time = (seekBar.value / 100) * audio.duration;
         audio.currentTime = time;
     });
 
-    function updateSeekBarFill() {
+   function updateSeekBarFill() {
         const percentage = (audio.currentTime / audio.duration) * 100;
         seekBar.style.setProperty('--seek-before-width', `${percentage}%`);
     }
 
+    startupPopup.classList.add('active');
+    popupBackdrop.classList.add('active');
+
+    setTimeout(() => {
+        startupPopup.classList.remove('active');
+        popupBackdrop.classList.remove('active');
+    }, 2000);
+
+    closeButton.addEventListener('click', () => {
+        startupPopup.classList.remove('active');
+        popupBackdrop.classList.remove('active');
+    });
+       visualizerCanvas.width = musicPlayer.offsetWidth;
+       visualizerCanvas.height = 50;
+
     loadSong(songIndex);
     updateQueueDisplay();
     populateCategories();
-});   
+    loadFavorites();
+    showSection('queue-section');
+    initVisualizer();
+    drawVisualizer();
+    audio.addEventListener('ended', nextSong);
+});
