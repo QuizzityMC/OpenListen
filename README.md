@@ -17,3 +17,6 @@ This is also very easy, just drag and drop the audio files in the "music" folder
             category: "Pop"
 
 Enjoy!
+
+
+(Hack Club admins please don't kill me, I selected the used AI box because of the favicon and because of help I got figuring out how various parts of the app - Shuffling, Dragging, Categories - would work)
