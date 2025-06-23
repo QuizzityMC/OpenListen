@@ -218,6 +218,34 @@ document.addEventListener('DOMContentLoaded', function() {
             cover: "img/Meteora.jpg",
             src: "music/Linkin Park - Figure.09.mp3",
             category: "Rock"
+        },
+        {
+            title: "Bingung",
+            artist: "Iksan Skuter",
+            cover: "img/Iksan Skuter Album Cover.jpeg",
+            src: "music/IKSAN SKUTER - BINGUNG (ACOUSTIC SESSION).mp3",
+            category: "Pop"
+        },
+        {
+            title: "Seroja",
+            artist: "Jamal Abdillah",
+            cover: "img/Album-Aku_Penghibur-Jamal_Abdillah.jpg",
+            src: "music/Jamal Abdillah - Seroja.mp3",
+            category: "Rock"
+        },
+        {
+            title: "Can You Hear The Music",
+            artist: "Ludwig Gorannson",
+            cover: "img/Ludwig_Göransson_-_Oppenheimer.png",
+            src: "music/Can You Hear The Music - Ludwig Gorannson.mp3",
+            category: "Film Music"
+        },
+        {
+            title: "First Step - Interstellar",
+            artist: "Hans Zimmer",
+            cover: "img/Interstellar_soundtrack_album_cover.jpg",
+            src: "music/Interstellar Official Soundtrack _ First Step – Hans Zimmer _ WaterTower 4.mp3",
+            category: "Film Music"
         }
     ];
 
